@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.course3.dao.ArticleMapper">
+    <select id="getArticleByAid" parameterType="int" resultType="com.course3.beans.Article">
+        select * from article where aid = #{aid}
+    </select>
+
+    <select id="getArticleList" resultType="com.course3.beans.Article">
+        select * from article
+    </select>
+
+    <select id="getArticleListByAuthor" parameterType="String" resultType="com.course3.beans.Article">
+        select * from article where author = #{author}
+    </select>
+
+    <select id="getArticleListByTitle" parameterType="String" resultType="com.course3.beans.Article">
+        select * from article where title like "%"#{title}"%"
+    </select>
+
+    <insert id="addArticle" parameterType="com.course3.beans.Article">
+        insert into article(author, title, content, date) values(#{author}, #{title}, #{content}, #{date})
+    </insert>
+
+    <delete id="deleteArticleByAid" parameterType="int">
+        delete from article where aid = #{aid}
+    </delete>
+
+    <update id="addArticleReadersByAid" parameterType="int">
+        update article set readers = readers + 1 where aid = #{aid}
+    </update>
+</mapper>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.course3.dao.FavorMapper">
+    <select id="getFavorListByUid" resultType="com.course3.beans.Favor">
+        select * from mybatis.favorlist where uid = #{uid}
+    </select>
+
+    <select id="getFavorCountByAid" parameterType="Integer" resultType="Integer">
+        select count(*) from mybatis.favorlist where aid = #{aid}
+    </select>
+
+    <select id="getFavorCountByUid" parameterType="Integer" resultType="Integer">
+        select count(*) from mybatis.favorlist where uid = #{uid}
+    </select>
+
+    <select id="getIsFavorByFavor" parameterType="com.course3.beans.Favor" resultType="boolean">
+        select count(*) from mybatis.favorlist where uid = #{uid} and aid = #{aid}
+    </select>
+
+    <insert id="addFavor" parameterType="com.course3.beans.Favor">
+        insert into mybatis.favorlist(uid, aid) values(#{uid}, #{aid})
+    </insert>
+
+    <delete id="deleteFavor" parameterType="com.course3.beans.Favor">
+        delete from mybatis.favorlist where uid = #{uid} and aid = #{aid}
+    </delete>
+</mapper>

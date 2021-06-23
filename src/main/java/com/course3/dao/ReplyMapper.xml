@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.course3.dao.ReplyMapper">
+    <select id="getReplyByRid" resultType="com.course3.beans.Reply">
+        select * from mybatis.reply where rid = #{rid}
+    </select>
+
+    <select id="getReplyList" resultType="com.course3.beans.Reply">
+        select * from mybatis.reply
+    </select>
+
+    <select id="getReplyListByAid" parameterType="int" resultType="com.course3.beans.Reply">
+        select * from mybatis.reply where aid = #{aid}
+    </select>
+
+    <insert id="addReply" parameterType="com.course3.beans.Reply">
+        insert into mybatis.reply(uname, aid, details, time) values(#{uname}, #{aid}, #{details}, #{time})
+    </insert>
+
+    <delete id="deleteReplyByRid" parameterType="int">
+        delete from mybatis.reply where rid = #{rid}
+    </delete>
+</mapper>
